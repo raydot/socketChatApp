@@ -1,0 +1,38 @@
+{
+  "name": "socketchatapp",
+  "version": "1.0.0",
+  "description": "See the README.md for details",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raydot/socketChatApp.git"
+  },
+  "keywords": [
+    "javascript",
+    "html",
+    "css",
+    "chat",
+    "socket.io"
+  ],
+  "author": "Dave Kanter",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/raydot/socketChatApp/issues"
+  },
+  "homepage": "https://github.com/raydot/socketChatApp#readme",
+  "devDependencies": {
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.15.1",
+    "eslint-plugin-react-hooks": "^2.1.1",
+    "prettier": "^1.18.2"
+  }
+}
