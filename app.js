@@ -75,6 +75,20 @@ const displayMessages = () => {
 
 displayMessages();
 
-//sendbutton callback
+//sendbtn callback
 
-//loginbutton callback
+//loginbtn callback
+loginBtn.addEventListener('click', e => {
+  // e=event artuments.
+  //prevent default action of a form
+  e.preventDefault;
+
+  //set the user name and create logged in message
+    let 
+
+  // display those messages
+
+  //hide login and show chat window
+
+  //display those messages
+});
