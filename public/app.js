@@ -25,6 +25,21 @@ const messages = []; // {author, date, content, type}
 
 const socket = io();
 
+socket.on('message', message => {
+  console.log(message);
+  if (message.type !== messageTypes.LOGIN) {
+    if (message.author === username) {
+      message.type = messageTypes.RIGHT;
+    } else {
+      message.type = messageTypes.LEFT;
+    }
+  }
+
+  messages.push(message);
+  displayMessages();
+  chatWindow.scrollTop = chatWindow.scrollHeight;
+});
+
 // take in message object, and return corresponding message html
 const createMessageHTML = message => {
   if (message.type === messageTypes.LOGIN) {
@@ -67,21 +82,33 @@ sendBtn.addEventListener('click', e => {
     return console.log('must supply a message');
   }
 
+  const date = new Date();
+  const day = date.getDate();
+  const year = date.getFullYear();
+  // take rightmost two digits:
+  const month = `0${date.getMonth() + 1}`.slice(-2);
+  const dateString = `${month}/${day}/${year}`;
+
   const message = {
     author: username,
-    date: new Date(),
-    content: messageInput.value,
-    type: messageTypes.RIGHT
+    date: dateString,
+    content: messageInput.value
   };
 
-  messages.push(message);
-  displayMessages();
+  // socket.emit('message', message);
+
+  // messages.push(message);
+  // displayMessages();
+
+  // chatWindow.scrollTop = chatWindow.scrollHeight;
+  sendMessage(message);
 
   messageInput.value = '';
-
-  chatWindow.scrollTop = chatWindow.scrollHeight;
 });
 
+const sendMessage = message => {
+  socket.emit('message', message);
+};
 // loginbtn callback
 loginBtn.addEventListener('click', e => {
   // e=event arguments.
@@ -94,9 +121,10 @@ loginBtn.addEventListener('click', e => {
     return console.log('must supply a user name');
   }
   username = usernameInput.value;
-  console.log(username);
 
-  messages.push({
+  //console.log(username);
+
+  sendMessage({
     author: username,
     type: messageTypes.LOGIN
   });
@@ -106,5 +134,5 @@ loginBtn.addEventListener('click', e => {
   chatWindow.classList.remove('hidden');
 
   // display those messages
-  displayMessages();
+  //displayMessages();
 });
