@@ -39,6 +39,7 @@ body {
 }
 
 .flex-grow-1 {
+    /* Take up as much space as possible! */
     flex-grow: 1;
 }
 
@@ -60,21 +61,15 @@ h1 {
     margin: 0 auto;
 }
 
-.light-blue {
-    color: var(--light-blue);
-}
 
-.secondary-text {
-    color: var(--secondary-text);
-}
+
+
 
 .text-center {
     text-align: center;
 }
 
-.primary-text {
-    color: var(--primary-text);
-}
+
 
 /* Header */
 header {
@@ -86,7 +81,7 @@ header {
 
 header .container {
     height: 100%;
-    align-items: left;
+    align-items: flex-start;
 }
 
 #appContainer {
@@ -167,4 +162,20 @@ button {
 
 .message-content {
     font-weight: 100;
+}
+
+.primary-text {
+    color: var(--primary-text);
+}
+
+.secondary-text {
+    color: var(--secondary-text);
+}
+
+.light-text {
+    color: var(--light-blue)
+}
+
+.light-blue {
+    color: var(--light-blue);
 }
