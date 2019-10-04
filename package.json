@@ -2,7 +2,7 @@
   "name": "socketchatapp",
   "version": "1.0.0",
   "description": "See the README.md for details",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,6 +15,7 @@
     "html",
     "css",
     "chat",
+    "node",
     "socket.io"
   ],
   "author": "Dave Kanter",
@@ -32,7 +33,11 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.15.1",
-    "eslint-plugin-react-hooks": "^2.1.1",
+    "eslint-plugin-react-hooks": "^2.1.2",
     "prettier": "^1.18.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
   }
 }

@@ -72,6 +72,10 @@ h1 {
     text-align: center;
 }
 
+.primary-text {
+    color: var(--primary-text);
+}
+
 /* Header */
 header {
     height: 150px;
