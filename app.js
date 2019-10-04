@@ -1,4 +1,4 @@
-console.log('hello from app.js!');
+// console.log('hello from app.js!');
 
 // message types: left right login
 /**
@@ -7,43 +7,24 @@ console.log('hello from app.js!');
  */
 const messageTypes = { LEFT: 'left', RIGHT: 'right', LOGIN: 'login' };
 
-//const messages = []; // {author, date, content, type}
+// const messages = []; // {author, date, content, type}
 
-//chat Stuff
+// chat Stuff
 const chatWindow = document.getElementById('chat');
 const messagesList = document.getElementById('messagesList');
 const messageInput = document.getElementById('messageInput');
 const sendBtn = document.getElementById('sendBtn');
 
-//login stuff
+// login stuff
 let username = '';
 const usernameInput = document.getElementById('usernameInput');
 const loginBtn = document.getElementById('loginBtn');
 const loginWindow = document.getElementById('login');
 
-const messages = [
-  {
-    author: 'bob cobb',
-    date: '11/11/2000',
-    content: 'foo bar baz',
-    type: messageTypes.RIGHT
-  },
-  {
-    author: 'bob cobb',
-    date: '11/11/2000',
-    content:
-      'This is the most important message ever left in the history of our nation!',
-    type: messageTypes.LEFT
-  },
-  {
-    author: 'bob cobb',
-    date: '11/11/2000',
-    type: messageTypes.LOGIN
-  }
-]; // {author, date, content, type}
+const messages = []; // {author, date, content, type}
 
 // take in message object, and return corresponding message html
-createMessageHTML = message => {
+const createMessageHTML = message => {
   if (message.type === messageTypes.LOGIN) {
     return `
             <p class="secondary-text text-center mb-2">${message.author} has joined the chat...</p>
@@ -56,7 +37,7 @@ createMessageHTML = message => {
         }">
             <div id="message-details" class="flex">
                 <p class="message-author">${
-                  message.author === messageTypes.RIGHT ? '' : message.author
+                  message.type === messageTypes.RIGHT ? '' : message.author
                 }</p>
                 <p class="message-date">${message.date}</p>
             </div>
@@ -66,6 +47,7 @@ createMessageHTML = message => {
 };
 
 const displayMessages = () => {
+  console.log('Displaying messages:');
   const messagesHTML = messages
     // Arrow functions without open and close brackets makes implicit return...
     .map(messages => createMessageHTML(messages))
@@ -75,20 +57,52 @@ const displayMessages = () => {
 
 displayMessages();
 
-//sendbtn callback
+// sendbtn callback
+sendBtn.addEventListener('click', e => {
+  e.preventDefault();
+  if (!messageInput.value) {
+    // can add error handling, etc...
+    return console.log('must supply a message');
+  }
 
-//loginbtn callback
+  const message = {
+    author: username,
+    date: new Date(),
+    content: messageInput.value,
+    type: messageTypes.RIGHT
+  };
+
+  messages.push(message);
+  displayMessages();
+
+  messageInput.value = '';
+
+  chatWindow.scrollTop = chatWindow.scrollHeight;
+});
+
+// loginbtn callback
 loginBtn.addEventListener('click', e => {
-  // e=event artuments.
-  //prevent default action of a form
-  e.preventDefault;
+  // e=event arguments.
+  // prevent default action of a form
+  e.preventDefault();
 
-  //set the user name and create logged in message
-    let 
+  // set the user name and create logged in message
+  if (!usernameInput.value) {
+    // can add error handling, etc...
+    return console.log('must supply a user name');
+  }
+  username = usernameInput.value;
+  console.log(username);
+
+  messages.push({
+    author: username,
+    type: messageTypes.LOGIN
+  });
+
+  // hide login and show chat window
+  loginWindow.classList.add('hidden');
+  chatWindow.classList.remove('hidden');
 
   // display those messages
-
-  //hide login and show chat window
-
-  //display those messages
+  displayMessages();
 });
